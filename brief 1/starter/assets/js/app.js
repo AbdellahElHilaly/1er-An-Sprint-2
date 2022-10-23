@@ -3,10 +3,10 @@
  * 
  */
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~gloabal variables
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~gloabal variables
 let tasks_length = 0 , btn_clicked_id;  
 let todo_number=0 , in_progres_number=0 , done_number=0;
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~gloabal function 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~gloabal function 
 
 function createTask() {
     // initialiser task form
@@ -48,24 +48,12 @@ function saveTask() {
         tasks_length++;
         // refresh tasks
         close_modal('staticBackdro');
-        operation_successfully('Saved!' ,'Your task has been saved.','success' );
+        swal("Saved!" ,"Your task has been saved.","success" );
         reloadTasks();
     }
 
     else{
-        Swal.fire({
-            title: 'ERROR',
-            text: "You must enter the data first!",
-            icon: 'error',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Try agin'
-        }).then((result) => {
-            if(!result.isConfirmed) {
-                close_modal('staticBackdro');
-            }
-        })
+        swal("Error", "You must enter the data first!", "warning");
     }
 
 
@@ -97,15 +85,6 @@ function editTask() {
         modal_bug.checked = true;
         modal_feature.checked = false;
     }
-
-    // Delete Button
-
-    // Définir l’index en entrée cachée pour l’utiliser en Update et Delete
-
-    // Definir FORM INPUTS
-
-    // Ouvrir Modal form
-
     
 
 }
@@ -134,23 +113,11 @@ function updateTask() {
         tasks[index].type = feature_OR_bug;
         // refresh tasks
         close_modal('staticBackdro');
-        operation_successfully('Saved!' ,'Your task has been saved.','success' );
+        swal("Saved!" ,"Your task has been saved.","success" );
         reloadTasks();
     }
     else{
-        Swal.fire({
-            title: 'ERROR',
-            text: "You must enter the data first!",
-            icon: 'error',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Try agin'
-        }).then((result) => {
-            if(!result.isConfirmed) {
-                close_modal('staticBackdro');
-            }
-        })
+        swal("Error", "You must enter the data first!", "warning");
     }
 
     
@@ -161,36 +128,48 @@ function updateTask() {
 }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~delete task
 function deleteTask() {
+    
 
-    Swal.fire({
-        title: 'Are you sure to delete this task?',
+
+    swal({
+        title: "Are you sure to delete this task?",
         text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if(result.isConfirmed) {
-            // Get index of task in the array
-            let index = btn_clicked_id-1;
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
 
-            // Remove task from array by index splice function
-            tasks.splice(index , 1);
+             // Get index of task in the array
+             let index = btn_clicked_id-1;
 
-            // close modal form
+             // Remove task from array by index splice function
+             tasks.splice(index , 1);
+ 
+             // close modal form
+ 
+             // refresh tasks
+             if(to_do_tasks_count.innerHTML == 1) to_do_tasks_count.innerHTML = 0;
+             if(in_progress_tasks_count.innerHTML == 1) in_progress_tasks_count.innerHTML = 0;
+             if(done_tasks_count.innerHTML == 1) done_tasks_count.innerHTML = 0;
+ 
+             
+ 
+             reloadTasks();
 
-            // refresh tasks
-            if(to_do_tasks_count.innerHTML == 1) to_do_tasks_count.innerHTML = 0;
-            if(in_progress_tasks_count.innerHTML == 1) in_progress_tasks_count.innerHTML = 0;
-            if(done_tasks_count.innerHTML == 1) done_tasks_count.innerHTML = 0;
+            swal("Your task has been deleted.", {
+                icon: "success",
+            });
 
-            operation_successfully( 'Deleted!','Your task has been deleted.','success');
-
-            reloadTasks();
+        } else {
+          swal("Your imaginary file is safe!");
         }
-    })
+      });
 
+
+
+     
     
     
 }
@@ -343,13 +322,7 @@ function get_button_content_by_click(btn_id , task_number ){
 
 }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  functions Animation
-function operation_successfully(txt1 , txt2 , txt3){
-    Swal.fire(
-        txt1,
-        txt2,
-        txt3
-    )
-}
+ 
 
 function close_modal(modal_id){
     let myModalEl = document.getElementById(modal_id);
