@@ -90,12 +90,12 @@
         
         else if(validationNotEmptytask(getTaskFromModel())){
 
-            $title          = getTaskFromModel()->title       ;
-            $type_id        = getTaskFromModel()->type_id     ;
-            $priority_id    = getTaskFromModel()->priority_id ;
-            $status_id      = getTaskFromModel()->status_id   ;
-            $task_datetime  = getTaskFromModel()->date        ;
-            $description    = getTaskFromModel()->description ;
+            $title          = sintString( getTaskFromModel()->title )       ;
+            $type_id        = getTaskFromModel()->type_id                   ;
+            $priority_id    = getTaskFromModel()->priority_id               ;
+            $status_id      = getTaskFromModel()->status_id                 ;
+            $task_datetime  = getTaskFromModel()->date                      ;
+            $description    = sintString( getTaskFromModel()->description ) ;
     
 
             $saveTaskQuery = "INSERT INTO `tasks` ( `title`, `type_id` , `priority_id` , `status_id` , `task_datetime` , `description`) 
@@ -187,12 +187,12 @@
         else if(validationNotEmptytask(getTaskFromModel())){
 
             $id             = getTaskFromModel()->id          ;
-            $title          = getTaskFromModel()->title       ;
-            $type_id        = getTaskFromModel()->type_id     ;
-            $priority_id    = getTaskFromModel()->priority_id ;
-            $status_id      = getTaskFromModel()->status_id   ;
-            $task_datetime  = getTaskFromModel()->date        ;
-            $description    = getTaskFromModel()->description ;
+            $title          = sintString( getTaskFromModel()->title )       ;
+            $type_id        = getTaskFromModel()->type_id                   ;
+            $priority_id    = getTaskFromModel()->priority_id               ;
+            $status_id      = getTaskFromModel()->status_id                 ;
+            $task_datetime  = getTaskFromModel()->date                      ;
+            $description    = sintString( getTaskFromModel()->description ) ;
 
             $updateTaskQuery =  "UPDATE `tasks` SET `id`='$id',`title`='$title ',`type_id`='$type_id',`priority_id`='$priority_id'
             ,`status_id`='$status_id',`task_datetime`='$task_datetime', `description`='$description' WHERE `id` = $id";
