@@ -222,7 +222,7 @@
 				</div>
 				
 				<div class="ms-auto">
-				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill" id='button_show_modal'><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
+				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill" id='button_show_modal'><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900" onclick="formReset()"></i> Add Task</a>
 				</div>
 			</div>
 			
@@ -434,7 +434,7 @@
 	<div class="modal fade" id="modal-task">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="scripts.php" method="POST" id="form-task">
+				<form action="scripts.php" method="POST" id="form_task">
 					<div class="modal-header">
 						<h5 class="modal-title">Add Task</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -505,7 +505,7 @@
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
-	<script src="scriptes.js"></script>
+	<script src="assets/js/scriptes.js"></script>
 	<!-- ================== END core-js ================== -->
 	
 	

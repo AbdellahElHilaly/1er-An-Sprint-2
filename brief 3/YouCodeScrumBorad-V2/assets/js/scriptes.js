@@ -1,5 +1,9 @@
 function loadPopUP(){
+    button_show_modal.click();
+}
 
+function formReset(){
+    form_task.reset();               
 }
 
 
@@ -27,7 +31,7 @@ function remplirePopUP(id){
 
 
 function redyForEdit(id){
-    button_show_modal.click();
+    loadPopUP();
     remplirePopUP(id);
 }
 

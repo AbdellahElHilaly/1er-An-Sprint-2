@@ -90,12 +90,12 @@
         
         else if(validationNotEmptytask(getTaskFromModel())){
 
-            $title          = sintString( getTaskFromModel()->title )       ;
-            $type_id        = getTaskFromModel()->type_id                   ;
-            $priority_id    = getTaskFromModel()->priority_id               ;
-            $status_id      = getTaskFromModel()->status_id                 ;
-            $task_datetime  = getTaskFromModel()->date                      ;
-            $description    = sintString( getTaskFromModel()->description ) ;
+            $title          = filterString( getTaskFromModel()->title )       ;
+            $type_id        = getTaskFromModel()->type_id                     ;
+            $priority_id    = getTaskFromModel()->priority_id                 ;
+            $status_id      = getTaskFromModel()->status_id                   ;
+            $task_datetime  = getTaskFromModel()->date                        ;
+            $description    = filterString( getTaskFromModel()->description ) ;
     
 
             $saveTaskQuery = "INSERT INTO `tasks` ( `title`, `type_id` , `priority_id` , `status_id` , `task_datetime` , `description`) 
@@ -115,8 +115,9 @@
 
         else {
             $_SESSION['success']    = "Error!"                                      ;
-            $_SESSION['message']    = "Task has not been added  (empty data) ?"     ;
+            $_SESSION['message']    = "Task has not been added  (Wrong data) ?"     ;
         }
+
 
     
 
@@ -187,12 +188,12 @@
         else if(validationNotEmptytask(getTaskFromModel())){
 
             $id             = getTaskFromModel()->id          ;
-            $title          = sintString( getTaskFromModel()->title )       ;
+            $title          = filterString( getTaskFromModel()->title )       ;
             $type_id        = getTaskFromModel()->type_id                   ;
             $priority_id    = getTaskFromModel()->priority_id               ;
             $status_id      = getTaskFromModel()->status_id                 ;
             $task_datetime  = getTaskFromModel()->date                      ;
-            $description    = sintString( getTaskFromModel()->description ) ;
+            $description    = filterString( getTaskFromModel()->description ) ;
 
             $updateTaskQuery =  "UPDATE `tasks` SET `id`='$id',`title`='$title ',`type_id`='$type_id',`priority_id`='$priority_id'
             ,`status_id`='$status_id',`task_datetime`='$task_datetime', `description`='$description' WHERE `id` = $id";
@@ -210,7 +211,7 @@
         }
         else {
             $_SESSION['success']    = "Error!"                                       ;
-            $_SESSION['message']    = " Task has not been updated  (empty data) ?"   ;
+            $_SESSION['message']    = " Task has not been updated  (Wrong data) ?"   ;
         }
 
         header('location: index.php');
