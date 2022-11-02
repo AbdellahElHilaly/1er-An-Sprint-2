@@ -305,8 +305,8 @@
 														<div class="fs-6 fw-normal button_description" id ="'.$task->id."_description".'"  value="'.$task->description.'" >'.$task->description.'</div>
 													</div>
 													<div class="py-1">
-														<span class="btn btn-primary py-3px px-5px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
-														<span class="btn btn-secondary py-3px px-5px"  id ="'.$task->id."_type".'" value="'.$task->type.'" >'.$task->type.'</span>
+														<span class="rounded-1 bg-primary px-5px fs-13px pb-2px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
+														<span class="rounded-1 bg-secondary px-5px fs-13px pb-2px"  id ="'.$task->id."_type".'" value="'.$task->type.'" >'.$task->type.'</span>
 													</div>
 												</div>
 												<input type="hidden"  id ="'.$task->id."_status".'"  value = "'.$task->status.'" />
@@ -351,8 +351,8 @@
 														<div class="fs-6 fw-normal button_description" id ="'.$task->id."_description".'" value="'.$task->description.'" >'.$task->description.'</div>
 													</div>
 													<div class="py-1">
-														<span class="btn btn-primary py-3px px-5px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
-														<span class="btn btn-secondary py-3px px-5px" id ="'.$task->id."_type".'"  value="'.$task->type.'" >'.$task->type.'</span>
+														<span class="rounded-1 bg-primary px-5px fs-13px pb-2px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
+														<span class="rounded-1 bg-secondary px-5px fs-13px pb-2px"  id ="'.$task->id."_type".'" value="'.$task->type.'" >'.$task->type.'</span>
 													</div>
 												</div>
 												<input type="hidden"  id ="'.$task->id."_status".'"  value = "'.$task->status.'" />
@@ -402,8 +402,8 @@
 														<div class="fs-6 fw-normal button_description"  id ="'.$task->id."_description".'" value="'.$task->description.'">'.$task->description.'</div>
 													</div>
 													<div class="py-1">
-														<span class="btn btn-primary py-3px px-5px" id ="'.$task->id."_priority".'"  value = "'.$task->priority.'" >'.$task->priority.'</span>
-														<span class="btn btn-secondary py-3px px-5px" id ="'.$task->id."_type".'"  value = "'.$task->type.'" > '.$task->type.'</span>
+														<span class="rounded-1 bg-primary px-5px fs-13px pb-2px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
+														<span class="rounded-1 bg-secondary px-5px fs-13px pb-2px"  id ="'.$task->id."_type".'" value="'.$task->type.'" >'.$task->type.'</span>
 													</div>
 												</div>
 												<input type="hidden"  id ="'.$task->id."_status".'"  value = "'.$task->status.'" />
@@ -437,7 +437,7 @@
 				<form action="scripts.php" method="POST" id="form_task">
 					<div class="modal-header">
 						<h5 class="modal-title">Add Task</h5>
-						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+						<a href="#" class="btn-close" data-bs-dismiss="modal" onclick="formReset()"></a>
 					</div>
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
@@ -491,7 +491,7 @@
 						
 					</div>
 					<div class="modal-footer">
-						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+						<a href="#" class="btn btn-white" data-bs-dismiss="modal" onclick="formReset()">Cancel</a>
 						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</a>
 						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
 						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>

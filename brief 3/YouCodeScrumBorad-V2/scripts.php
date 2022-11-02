@@ -4,6 +4,7 @@
     include 'Task.php';
     include 'validation.php';
 
+
     //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
     session_start();
 
@@ -14,30 +15,39 @@
     
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Download ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    function getAllTasksFromDataBase()
+function getAllTasksFromDataBase()
     {
         include 'database.php';
         //CODE HERE
         $tasks = array() ;
         //SQL SELECT
 
-        $getTaskQuery = "SELECT * FROM `tasks`";
+
+        $getTaskQuery ="SELECT tasks.id as id ,  tasks.title as title  ,  tasks.task_datetime as dat, tasks.description as description , 
+        types.name as types , statuses.name  as statue, priorities.name as priority FROM tasks  
+        JOIN types on types.id = tasks.type_id  
+        JOIN statuses on statuses.id = tasks.status_id 
+        JOIN priorities on priorities.id = tasks.priority_id;";
+
+
         $result = mysqli_query($connection , $getTaskQuery);
         if($result){
 
             $i = 0;
             while($row = mysqli_fetch_assoc($result)){
-                $tasks[$i] = new Task();
+                $tasks[$i] = new Task()                         ;
                 
-                $tasks[$i]->id = $row['id'];
-                $tasks[$i]->title = $row['title'];
-                $tasks[$i]->type = getTypeFromDataBase( $row['type_id'] );
-                $tasks[$i]->priority = getPriorityFromDataBase( $row['priority_id'] );
-                $tasks[$i]->status = getStatueFromDataBase( $row['status_id'] );
-                $tasks[$i]->date = $row['task_datetime'];
-                $tasks[$i]->description = $row['description'];
+                $tasks[$i]->id = $row['id']                     ;
+                $tasks[$i]->title = $row['title']               ;
 
-                $i++;
+                $tasks[$i]->type =$row['types']                 ;             
+                $tasks[$i]->priority =$row['priority']          ;         
+                $tasks[$i]->status = $row['statue']             ;          
+
+                $tasks[$i]->date = $row['dat']                  ;
+                $tasks[$i]->description = $row['description']   ;
+
+                $i++                                            ;
             }
         }
         // echo "Fetch all tasks";
@@ -46,7 +56,7 @@
 
 
 
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~ mini-functions ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~ mini-functions ~~~~~~~~~~~~~~~~~~~~~~~~~~ ( not working )
 
     function getTypeFromDataBase($type_id){
         include 'database.php';
@@ -54,7 +64,10 @@
         $result = mysqli_query($connection , $getTypeQuery);
         $type = mysqli_fetch_assoc($result);
         return $type['name'];
+
+        
     }
+
     function getStatueFromDataBase($priority_id){
         include 'database.php';
         $getTypeQuery = "SELECT * FROM `statuses` WHERE `id`='" . $priority_id . "'";
@@ -65,8 +78,8 @@
 
     function getPriorityFromDataBase($status_id){
         include 'database.php';
-        $getTypeQuery = "SELECT * FROM `priorities` WHERE `id`='" . $status_id . "'";
-        $result = mysqli_query($connection , $getTypeQuery);
+        $getPriorityQuery = "SELECT * FROM `priorities` WHERE `id`='" . $status_id . "'";
+        $result = mysqli_query($connection , $getPriorityQuery);
         $type = mysqli_fetch_assoc($result);
         return $type['name'];
     }
@@ -214,6 +227,8 @@
             $_SESSION['message']    = " Task has not been updated  (Wrong data) ?"   ;
         }
 
+
+
         header('location: index.php');
 
     }
@@ -251,10 +266,7 @@
                 $_SESSION['success']    = "Error!"                                  ;
             }        
         }
-        
-        
 
-        
 		header('location: index.php');
     }
 
