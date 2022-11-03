@@ -1,5 +1,6 @@
 <?php
     include('scripts.php');
+	
 ?>
 
 <!DOCTYPE html>
@@ -221,7 +222,7 @@
 				</div>
 				
 				<div class="ms-auto">
-				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
+				<a href="#modal-task" data-bs-toggle="modal"  onclick = "hideButtonAdd()" class="btn btn-success btn-rounded px-4 rounded-pill" id='button_show_modal'><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
 				</div>
 			</div>
 			
@@ -240,22 +241,42 @@
 				<div class="ms-md-4 mt-md-0 mt-2"><i class="far fa-clock fa-fw me-1 text-dark text-opacity-50"></i> 14 day(s)</div>
 			</div>
 
-			<?php if (isset($_SESSION['message'])): ?>
-				<div class="alert alert-green alert-dismissible fade show">
-				<strong>Success!</strong>
-					<?php 
-						echo $_SESSION['message']; 
-						unset($_SESSION['message']);
-					?>
-					<button type="button" class="btn-close" data-bs-dismiss="alert"></span>
-				</div>
-			<?php endif ?>
+			<?php 
+				if(isset($_SESSION['message']) && isset($_SESSION['success'])){
+
+					if($_SESSION['success'] == "Error!") $bg_color = "danger";
+					else if($_SESSION['success'] == "Success!") $bg_color = "green";
+
+
+					echo '
+						<div class="alert alert-'.$bg_color.' alert-dismissible fade show">
+							<strong>';
+							
+								echo $_SESSION['success']; 
+								unset($_SESSION['success']); 
+
+							echo '</strong>';
+
+							echo $_SESSION['message']; 
+							unset($_SESSION['message']);
+							echo'
+							<button type="button" class="btn-close" data-bs-dismiss="alert"></span>
+
+						</div>
+
+					';
+				}
+			?>
+
+
+
+
 			<div class="row">
 					
 				<div class="col-xl-4 col-lg-6">
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
-							<h4 class="panel-title">To do (<span id="to-do-tasks-count">0</span>)</h4>
+							<h4 class="panel-title">To do (<span id="to_do_task_count">0</span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -268,6 +289,32 @@
 							<?php
 								//PHP CODE HERE
 								//DATA FROM getTasks() FUNCTION
+								$todotaskCount = 0;
+								foreach(getAllTasksFromDataBase() as $task){
+									if($task->status == "To Do"){
+										$todotaskCount++;
+										echo '
+											<button data-bs-toggle="modal" data-bs-target="#modal-task" onclick = "redyForEdit(this.id)" class="d-flex  list-group-item w-100 text-start" id ="'.$task->id.'"  >
+												<div class="mt-1">                       
+													<i class="fa-regular fa-circle-question text-success fs-3"></i>
+												</div>
+												<div class="ms-3">
+													<div class="fs-5 fw-bolder" " id ="'.$task->id."_title".'" value="'.$task->title.'" >'.$task->title.'</div>
+													<div class="">
+														<div class="fs-6 fw-light text-muted" id ="'.$task->id."_date".'" value="'.$task->date.'"  >#'.$task->id.' created in  '.$task->date.'</div>
+														<div class="fs-6 fw-normal button_description" id ="'.$task->id."_description".'"  value="'.$task->description.'" >'.$task->description.'</div>
+													</div>
+													<div class="py-1">
+														<span class="rounded-1 bg-primary px-5px fs-13px pb-2px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
+														<span class="rounded-1 bg-secondary px-5px fs-13px pb-2px"  id ="'.$task->id."_type".'" value="'.$task->type.'" >'.$task->type.'</span>
+													</div>
+												</div>
+												<input type="hidden"  id ="'.$task->id."_status".'"  value = "'.$task->status.'" />
+											</button>
+										';
+									}
+								}
+								echo '<script>to_do_task_count.innerHTML = '.$todotaskCount.'</script>';
 							?>
 						</div>
 					</div>
@@ -275,7 +322,7 @@
 				<div class="col-xl-4 col-lg-6">
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
-							<h4 class="panel-title">In Progress (<span id="in-progress-tasks-count">0</span>)</h4>
+							<h4 class="panel-title">In Progress (<span id="in_progress_tasks_count">0</span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -288,6 +335,35 @@
 							<?php
 								//PHP CODE HERE
 								//DATA FROM getTasks() FUNCTION
+								$inProgresstaskCount = 0;
+								foreach(getAllTasksFromDataBase() as $task){
+									if($task->status == "In Progress"){
+										$inProgresstaskCount++;
+										echo '
+											<button data-bs-toggle="modal" data-bs-target="#modal-task" onclick = "redyForEdit(this.id)"  class="d-flex  list-group-item w-100 text-start" id ="'.$task->id.'">
+												<div class="mt-1">                       
+													<i class="fa-solid fa-spinner text-success fs-3"></i>
+												</div>
+												<div class="ms-3">
+													<div class="fs-5 fw-bolder" id ="'.$task->id."_title".'" value="'.$task->title.'"  > '.$task->title.'</div>
+													<div class="">
+														<div class="fs-6 fw-light text-muted" id ="'.$task->id."_date".'" value="'.$task->date.'" >#'.$task->id.' created in  '.$task->date.'</div>
+														<div class="fs-6 fw-normal button_description" id ="'.$task->id."_description".'" value="'.$task->description.'" >'.$task->description.'</div>
+													</div>
+													<div class="py-1">
+														<span class="rounded-1 bg-primary px-5px fs-13px pb-2px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
+														<span class="rounded-1 bg-secondary px-5px fs-13px pb-2px"  id ="'.$task->id."_type".'" value="'.$task->type.'" >'.$task->type.'</span>
+													</div>
+												</div>
+												<input type="hidden"  id ="'.$task->id."_status".'"  value = "'.$task->status.'" />
+											</button>
+										';
+									}
+								}
+
+								echo '<script>in_progress_tasks_count.innerHTML = '.$inProgresstaskCount.'</script>';
+
+								
 							?>
 						</div>
 					</div>
@@ -295,7 +371,7 @@
 				<div class="col-xl-4 col-lg-6">
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
-							<h4 class="panel-title">Done (<span id="done-tasks-count">0</span>)</h4>
+							<h4 class="panel-title">Done (<span id="done_tasks_count">0</span>)</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -306,8 +382,40 @@
 						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="done-tasks">
 							<!-- DONE TASKS HERE -->
 							<?php
+								
 								//PHP CODE HERE
 								//DATA FROM getTasks() FUNCTION
+								$donetaskCount = 0;
+								
+								foreach(getAllTasksFromDataBase() as $task){
+									if($task->status == "Done"){
+										$donetaskCount++;
+										
+										echo ' 
+											<button data-bs-toggle="modal" data-bs-target="#modal-task" onclick = "redyForEdit(this.id)" class="d-flex list-group-item w-100 text-start" id ="'.$task->id.'" >
+												<div class="mt-1">                       
+													<i class="fa-regular fa-circle-check text-success fs-2"></i>
+												</div>
+												<div class="ms-3">
+													<div class="fs-5 fw-bolder" id ="'.$task->id."_title".'"  value = "'.$task->title.'" >'.$task->title.'</div>
+													<div class="">
+														<div class="fs-6 fw-light text-muted"  id ="'.$task->id."_date".'"  value = "'.$task->date.'" >#'.$task->id.' created in  '.$task->date.'</div>
+														<div class="fs-6 fw-normal button_description"  id ="'.$task->id."_description".'" value="'.$task->description.'">'.$task->description.'</div>
+													</div>
+													<div class="py-1">
+														<span class="rounded-1 bg-primary px-5px fs-13px pb-2px" id ="'.$task->id."_priority".'"  value="'.$task->priority.'" >'.$task->priority.'</span>
+														<span class="rounded-1 bg-secondary px-5px fs-13px pb-2px"  id ="'.$task->id."_type".'" value="'.$task->type.'" >'.$task->type.'</span>
+													</div>
+												</div>
+												<input type="hidden"  id ="'.$task->id."_status".'"  value = "'.$task->status.'" />
+											</button>
+										';
+									}
+								}
+
+								echo '<script>done_tasks_count.innerHTML = '.$donetaskCount.'</script>';
+								
+								
 							?>
 						</div>
 					</div>
@@ -327,27 +435,30 @@
 	<div class="modal fade" id="modal-task">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="scripts.php" method="POST" id="form-task">
+				<form action="scripts.php" method="POST" id="form_task">
 					<div class="modal-header">
 						<h5 class="modal-title">Add Task</h5>
-						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+						<a href="#" class="btn-close" data-bs-dismiss="modal" onclick="formReset()"></a>
 					</div>
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
-							<input type="hidden" id="task-id">
+							<input type="hidden" id="task-id" value =67  name="task-id" >
+							<?php
+
+							?>
 							<div class="mb-3">
 								<label class="form-label">Title</label>
-								<input type="text" class="form-control" id="task-title"/>
+								<input type="text" class="form-control" id="task_title" name="task-title"/>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
 								<div class="ms-3">
 									<div class="form-check mb-1">
-										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task-type-feature"/>
+										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task_type_feature"/>
 										<label class="form-check-label" for="task-type-feature">Feature</label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task-type-bug"/>
+										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task_type_bug"/>
 										<label class="form-check-label" for="task-type-bug">Bug</label>
 									</div>
 								</div>
@@ -355,7 +466,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Priority</label>
-								<select class="form-select" id="task-priority">
+								<select class="form-select" id="task_priority" name="task-priority">
 									<option value="">Please select</option>
 									<option value="Low">Low</option>
 									<option value="Medium">Medium</option>
@@ -365,7 +476,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Status</label>
-								<select class="form-select" id="task-status">
+								<select class="form-select" id="task_status" name="task-status">
 									<option value="">Please select</option>
 									<option value="To Do">To Do</option>
 									<option value="In Progress">In Progress</option>
@@ -374,16 +485,17 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Date</label>
-								<input type="date" class="form-control" id="task-date"/>
+								<input type="date" class="form-control" id="task_date" name="task-date"/>
 							</div>
 							<div class="mb-0">
 								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="10" id="task-description"></textarea>
+								<textarea class="form-control" rows="10" id="task_description" name="task-description"></textarea>
+								<input type="hidden"  id ="task_klicked_id"  value = "" name = "task-klicked-id" />
 							</div>
 						
 					</div>
 					<div class="modal-footer">
-						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+						<a href="#" class="btn btn-white" data-bs-dismiss="modal" onclick="formReset()">Cancel</a>
 						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</a>
 						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
 						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
@@ -392,15 +504,27 @@
 			</div>
 		</div>
 	</div>
+
 	
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
+	<script src="assets/js/scriptes.js"></script>
 	<!-- ================== END core-js ================== -->
-	<script src="scripts.js"></script>
+	
+	
 
 	<script>
 		//reloadTasks();
 	</script>
+
+
+
+
+
+
+
+
+								
 </body>
 </html>
