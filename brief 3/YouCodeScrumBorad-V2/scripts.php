@@ -27,7 +27,7 @@ function getAllTasksFromDataBase()
         types.name as types , statuses.name  as statue, priorities.name as priority FROM tasks  
         JOIN types on types.id = tasks.type_id  
         JOIN statuses on statuses.id = tasks.status_id 
-        JOIN priorities on priorities.id = tasks.priority_id;";
+        JOIN priorities on priorities.id = tasks.priority_id";
 
 
         $result = mysqli_query($connection , $getTaskQuery);

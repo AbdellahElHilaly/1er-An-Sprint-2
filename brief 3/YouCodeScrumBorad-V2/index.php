@@ -222,7 +222,7 @@
 				</div>
 				
 				<div class="ms-auto">
-				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill" id='button_show_modal'><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900" onclick="formReset()"></i> Add Task</a>
+				<a href="#modal-task" data-bs-toggle="modal"  onclick = "hideButtonAdd()" class="btn btn-success btn-rounded px-4 rounded-pill" id='button_show_modal'><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
 				</div>
 			</div>
 			
@@ -294,7 +294,7 @@
 									if($task->status == "To Do"){
 										$todotaskCount++;
 										echo '
-											<button onclick = "redyForEdit(this.id)" class="d-flex  list-group-item w-100 text-start" id ="'.$task->id.'"  >
+											<button data-bs-toggle="modal" data-bs-target="#modal-task" onclick = "redyForEdit(this.id)" class="d-flex  list-group-item w-100 text-start" id ="'.$task->id.'"  >
 												<div class="mt-1">                       
 													<i class="fa-regular fa-circle-question text-success fs-3"></i>
 												</div>
@@ -340,7 +340,7 @@
 									if($task->status == "In Progress"){
 										$inProgresstaskCount++;
 										echo '
-											<button  onclick = "redyForEdit(this.id)"  class="d-flex  list-group-item w-100 text-start" id ="'.$task->id.'">
+											<button data-bs-toggle="modal" data-bs-target="#modal-task" onclick = "redyForEdit(this.id)"  class="d-flex  list-group-item w-100 text-start" id ="'.$task->id.'">
 												<div class="mt-1">                       
 													<i class="fa-solid fa-spinner text-success fs-3"></i>
 												</div>
@@ -386,12 +386,13 @@
 								//PHP CODE HERE
 								//DATA FROM getTasks() FUNCTION
 								$donetaskCount = 0;
+								
 								foreach(getAllTasksFromDataBase() as $task){
 									if($task->status == "Done"){
 										$donetaskCount++;
 										
 										echo ' 
-											<button onclick = "redyForEdit(this.id)" class="d-flex list-group-item w-100 text-start" id ="'.$task->id.'" >
+											<button data-bs-toggle="modal" data-bs-target="#modal-task" onclick = "redyForEdit(this.id)" class="d-flex list-group-item w-100 text-start" id ="'.$task->id.'" >
 												<div class="mt-1">                       
 													<i class="fa-regular fa-circle-check text-success fs-2"></i>
 												</div>
@@ -442,19 +443,22 @@
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
 							<input type="hidden" id="task-id" value =67  name="task-id" >
+							<?php
+
+							?>
 							<div class="mb-3">
 								<label class="form-label">Title</label>
-								<input type="text" class="form-control" id="task_title" name="task-title"/>
+								<input type="text" class="form-control" id="task_title" name="task-title"  required/>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
 								<div class="ms-3">
 									<div class="form-check mb-1">
-										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task_type_feature"/>
+										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task_type_feature" required />
 										<label class="form-check-label" for="task-type-feature">Feature</label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task_type_bug"/>
+										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task_type_bug" required />
 										<label class="form-check-label" for="task-type-bug">Bug</label>
 									</div>
 								</div>
@@ -462,7 +466,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Priority</label>
-								<select class="form-select" id="task_priority" name="task-priority">
+								<select class="form-select" id="task_priority" name="task-priority" required>
 									<option value="">Please select</option>
 									<option value="Low">Low</option>
 									<option value="Medium">Medium</option>
@@ -472,7 +476,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Status</label>
-								<select class="form-select" id="task_status" name="task-status">
+								<select class="form-select" id="task_status" name="task-status" required>
 									<option value="">Please select</option>
 									<option value="To Do">To Do</option>
 									<option value="In Progress">In Progress</option>
@@ -481,11 +485,11 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Date</label>
-								<input type="date" class="form-control" id="task_date" name="task-date"/>
+								<input type="date" class="form-control" id="task_date" name="task-date " required/>
 							</div>
 							<div class="mb-0">
 								<label class="form-label">Description</label>
-								<textarea class="form-control" rows="10" id="task_description" name="task-description"></textarea>
+								<textarea type = "text" class="form-control" rows="10" id="task_description" name="task-description" required></textarea>
 								<input type="hidden"  id ="task_klicked_id"  value = "" name = "task-klicked-id" />
 							</div>
 						

@@ -1,25 +1,22 @@
-function loadPopUP(id){
-    
-    button_show_modal.click();
-    
-}
 
 function formReset(){
-    hideButtons("add");
-    form_task.reset();               
+    form_task.reset(); 
 }
 
-function hideButtons(addOrEdit){
-    if(addOrEdit == "add"){
-        document.getElementById("task-save-btn").style.display = "block";
-        document.getElementById("task-update-btn").style.display = "none";
-        document.getElementById("task-delete-btn").style.display = "none";
-    }
-    else{
-        document.getElementById("task-save-btn").style.display = "none";
-        document.getElementById("task-update-btn").style.display = "block";
-        document.getElementById("task-delete-btn").style.display = "block";
-    }
+function hideButtonEdit(){
+    document.getElementById("task-save-btn").style.display = "none";
+    document.getElementById("task-update-btn").style.display = "block";
+    document.getElementById("task-delete-btn").style.display = "block";
+    // document.getElementById("task-save-btn").style.display = "block";
+    // document.getElementById("task-update-btn").style.display = "none";
+    // document.getElementById("task-delete-btn").style.display = "none";
+
+}
+function hideButtonAdd(){
+    // formReset();
+    document.getElementById("task-save-btn").style.display = "block";
+    document.getElementById("task-update-btn").style.display = "none";
+    document.getElementById("task-delete-btn").style.display = "none";
 }
 
 
@@ -47,9 +44,10 @@ function remplirePopUP(id){
 
 
 function redyForEdit(id){
-    hideButtons("update");
-    loadPopUP(id);
+    hideButtonEdit();
     remplirePopUP(id);
     
+
+
 }
 

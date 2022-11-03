@@ -1,5 +1,10 @@
 <?php
 
+    function titleValidation($title){
+        $validationMessage = "title formate invalid! ";
+        return preg_match('' , $title);
+    }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     function validationNotEmptytask($task){
 
@@ -24,6 +29,7 @@
 
         return $value;
     }
+
     
 
 
