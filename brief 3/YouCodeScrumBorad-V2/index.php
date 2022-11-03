@@ -448,17 +448,17 @@
 							?>
 							<div class="mb-3">
 								<label class="form-label">Title</label>
-								<input type="text" class="form-control" id="task_title" name="task-title"  required/>
+								<input type="text" class="form-control" id="task_title" name="task-title"/>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
 								<div class="ms-3">
 									<div class="form-check mb-1">
-										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task_type_feature" required />
+										<input class="form-check-input" name="task-type" type="radio" value="Feature" id="task_type_feature"/>
 										<label class="form-check-label" for="task-type-feature">Feature</label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task_type_bug" required />
+										<input class="form-check-input" name="task-type" type="radio" value="Bug" id="task_type_bug"/>
 										<label class="form-check-label" for="task-type-bug">Bug</label>
 									</div>
 								</div>
@@ -466,7 +466,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Priority</label>
-								<select class="form-select" id="task_priority" name="task-priority" required>
+								<select class="form-select" id="task_priority" name="task-priority">
 									<option value="">Please select</option>
 									<option value="Low">Low</option>
 									<option value="Medium">Medium</option>
@@ -476,7 +476,7 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Status</label>
-								<select class="form-select" id="task_status" name="task-status" required>
+								<select class="form-select" id="task_status" name="task-status">
 									<option value="">Please select</option>
 									<option value="To Do">To Do</option>
 									<option value="In Progress">In Progress</option>
@@ -485,11 +485,11 @@
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Date</label>
-								<input type="date" class="form-control" id="task_date" name="task-date " required/>
+								<input type="date" class="form-control" id="task_date" name="task-date"/>
 							</div>
 							<div class="mb-0">
 								<label class="form-label">Description</label>
-								<textarea type = "text" class="form-control" rows="10" id="task_description" name="task-description" required></textarea>
+								<textarea class="form-control" rows="10" id="task_description" name="task-description"></textarea>
 								<input type="hidden"  id ="task_klicked_id"  value = "" name = "task-klicked-id" />
 							</div>
 						
