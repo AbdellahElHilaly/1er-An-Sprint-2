@@ -1,0 +1,376 @@
+/* fonts  ............................................................................................. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600&family=Irish+Grover&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500&family=Inter:wght@100;200;300;500;600&family=Irish+Grover&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;400&display=swap');
+
+
+/* variabels  ............................................................................................. */
+
+:root {
+    --bluePrimary: #2BB7DA;
+    --blueSecondary: #3DC2F1;
+    --orangePrimary: #D25B27;
+    --orangeSecondary: #DA7C56;
+    --orangeThree: #E5AA68;
+    --darck : #393E42;
+    --yelloPrimary:#F8C71C;
+    --yelloSecondary:#EEE2B6;
+}
+
+
+/* body  ............................................................................................. */
+
+.body{
+    background-color: var(--bluePrimary);
+    font-family: 'Inter', sans-serif;
+    padding: 5px 25px;
+}
+
+
+/* nave  ............................................................................................. */
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 25rem;
+}
+
+.nav-list{
+    display: flex;
+    list-style-type: none;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+    
+
+}
+.nav-list li{
+    margin-top: 1rem;
+    margin-right: 1rem;
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.nav-list li:hover{
+    transform: translateY(4px);
+}
+
+.nav-list li:focus{
+    border-bottom: 3px solid black;
+}
+
+
+
+
+
+
+
+/* section  ............................................................................................. */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text home  */
+section .containerr{
+    margin: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+section .flayer-container{
+    width: 50%;
+}
+
+section .flayer{
+    width: 100%;
+}
+
+section .text-home{
+    text-align: center;
+    font-size: 5.5em;
+    font-family: 'Irish Grover';
+    color: black;
+    -webkit-text-fill-color: var(--orangePrimary); /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+
+}
+section .min-description{
+    text-align: start;
+    font-family: 'Inconsolata';
+    font-weight: normal;
+    font-size: 1.5em;
+
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ sing up  */
+section   .reight-section-container{
+    margin: auto;
+}
+section .form-container{
+    display: none;
+    margin: auto;
+    border-radius: 25px;
+    border: 1px solid black; 
+    padding: 40px;
+    background-color: var(--blueSecondary);
+    
+}
+
+section .inputs{
+    background-color: var(--yelloSecondary);
+}
+
+section .form-container .text-inconsolata{
+    font-family: 'Inconsolata';
+    font-weight: bold;
+    font-size: larger;
+    color: black;
+}
+
+section .form-container .button-submit{
+    background-color: var(--orangePrimary);
+    
+    border-radius: 10px;
+    border: 2px solid var(--orangePrimary); 
+    padding: .25em 1em;
+
+}
+section .form-container .button-submit:hover{
+    box-shadow: 0 5px #666;
+}
+section .form-container .button-submit:active {
+    background-color: var(--orangePrimary);
+    border: 2px solid var(--orangePrimary);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* responsve (deferent screen for text home)  ............................................................................ */
+
+
+
+@media screen and (max-width: 1290px) {
+    section .text-home{
+        font-size: 4.5em;
+    }
+}
+@media screen and (max-width: 1200px) {
+    section .text-home{
+        font-size: 3.5em;
+    }
+    section .flayer-container{
+        width: 45%;
+    }
+
+    
+}
+@media screen and (max-width: 1021px) {
+    section .text-home{
+        font-size: 3em;
+    }
+    section .flayer-container{
+        width: 35%;
+    }
+    
+}
+
+
+
+
+/* responsve (min screen)  ............................................................................................. */
+
+
+@media screen and (max-width: 770px) {
+    .logo{
+        width: 75%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    nav{
+        display: block;
+        
+    }
+
+    .nav-list{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        
+    }
+
+    .nav-list li{
+        margin-top: 0;
+        font-size: 1em;
+    }
+
+    .body{
+        padding: 5px 25px;
+    }
+
+
+/* section */
+
+
+    section .containerr{
+        display: block;
+    }
+    section .text-home-container{
+        width: 100%;
+    }
+    section .text-home{
+        font-size: 6em;
+    }
+
+    section .flayer-container{
+        width: 100%;
+        
+    }
+
+    section .form-container{
+        display: none;
+        width: 100%;
+        padding: 10px;
+    }
+
+    
+
+    
+}
+
+/* responsve (tablet)  ............................................................................................. */
+
+
+
+
+
+/* responsve (mobile)  ............................................................................................. */
+
+@media screen and (max-width: 745px) {
+    section .text-home{
+        font-size: 5em;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    section .text-home{
+        font-size: 4.5em;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    section .text-home{
+        font-size: 3.5em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo{
+        width: 75%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    nav{
+        display: block;
+        
+    }
+
+    .nav-list{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        
+        
+    }
+
+    .nav-list li{
+        margin-top: 0;
+        font-size: 1em;
+    }
+
+    .body{
+        padding: 5px 0px;
+    }
+
+
+    /* section */
+    section .flayer-container{
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 415px) {
+    section .text-home{
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 355px) {
+    section .text-home{
+        font-size: 2.5em;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
