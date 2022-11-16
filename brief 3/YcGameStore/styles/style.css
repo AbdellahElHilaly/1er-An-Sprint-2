@@ -130,11 +130,9 @@ section .form-container .text-inconsolata{
 
 section .form-container .button-submit{
     background-color: var(--orangePrimary);
-    
     border-radius: 10px;
     border: 2px solid var(--orangePrimary); 
     padding: .25em 1em;
-
 }
 section .form-container .button-submit:hover{
     box-shadow: 0 5px #666;
@@ -145,6 +143,9 @@ section .form-container .button-submit:active {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+
+ 
+
 
 
 

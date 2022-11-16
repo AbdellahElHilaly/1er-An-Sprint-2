@@ -11,6 +11,9 @@ nav_list_sing_in.addEventListener("click" , (params) => {
 
     document.getElementById('forme_sing_name_id').style.display="flex";
     document.getElementById('forme_sing_conf_password_id').style.display="flex";
+
+    document.getElementById('botton_container_submet_sing_in_id').style.display="block";
+    document.getElementById('botton_container_submet_sing_up_id').style.display="none";
 })
 
 
@@ -22,6 +25,10 @@ nav_list_sing_up.addEventListener("click" , (params) => {
 
     document.getElementById('forme_sing_name_id').style.display="none";
     document.getElementById('forme_sing_conf_password_id').style.display="none";
+
+    document.getElementById('botton_container_submet_sing_in_id').style.display="none";
+    document.getElementById('botton_container_submet_sing_up_id').style.display="block";
+    
     
     
     

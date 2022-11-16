@@ -35,16 +35,16 @@
 
                 <!----------------------------------------- sing up ----------------------------------------->
                 <div class="form-container" id="forme_sing_id">
-                    <form >
+                    <form method="post" action="scripts\script.php">
                         <div class="form-label">
                             <p class="text-inconsolata text-center fs-2" id="forme_sing_label_id">Sing up</p>
                         </div>
                         <!-- name -->
-                        <div class=" align-items-center mb-4" id="forme_sing_name_id">
+                        <div class=" align-items-center mb-4" id="forme_sing_name_id" >
                             <div class="me-3">
                                 <iconify-icon icon="mdi:user-circle" class="fs-1"></iconify-icon>
                             </div>
-                            <input type="text" id="form1Example13" placeholder="your name" class="inputs form-control form-control-lg border border-dark rounded-4" />
+                            <input name="name" type="text" id="form1Example13" placeholder="your name" class="inputs form-control form-control-lg border border-dark rounded-4" />
                             
                         </div>
                         <!-- emaim -->
@@ -52,7 +52,7 @@
                             <div class="me-3">
                                 <iconify-icon icon="ic:round-email" class="fs-1"></iconify-icon>
                             </div>
-                            <input type="email" id="form1Example13" placeholder="your email" class="inputs form-control form-control-lg border border-dark rounded-4" required/>
+                            <input name="email" type="email" id="form1Example13" placeholder="your email" class="inputs form-control form-control-lg border border-dark rounded-4"/>
                             
                         </div>
                         <!-- password -->
@@ -60,7 +60,7 @@
                             <div class="me-3">
                                 <iconify-icon icon="mdi:password" class="fs-1"></iconify-icon>
                             </div>
-                            <input type="password" id="form1Example13" placeholder="your password" class="inputs form-control form-control-lg border border-dark rounded-4" />
+                            <input name="password" type="password" id="form1Example13" placeholder="your password" class="inputs form-control form-control-lg border border-dark rounded-4" />
                             
                         </div>
                         <!-- password confirm -->
@@ -68,13 +68,17 @@
                             <div class="pe-3">
                                 <iconify-icon icon="mdi:password-check" class="fs-1"></iconify-icon>
                             </div>
-                            <input type="password" id="form1Example13" placeholder="confirm password" class="inputs form-control form-control-lg border border-dark rounded-4" />
+                            <input name="conf-password" type="password" id="form1Example13" placeholder="confirm password" class="inputs form-control form-control-lg border border-dark rounded-4" />
                             
                         </div>
 
                         <!-- Submit button -->
-                        <div class="button-container text-center">
-                            <button type="submit" class="button-submit"><span class="text-inconsolata">Submit</span></button>
+                        <div class="button-container text-center" id="botton_container_submet_sing_in_id">
+                            <button name="sing-in" type="submit" class="button-submit"><span class="text-inconsolata" >Submit</span></button>
+                        </div>
+
+                        <div  class="button-container  text-center" id="botton_container_submet_sing_up_id">
+                            <button name="sing-up"  type="submit" class="button-submit "><span class="text-inconsolata" >Submit</span></button>
                         </div>
                 
                         </form>
