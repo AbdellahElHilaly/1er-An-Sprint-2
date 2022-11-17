@@ -16,7 +16,7 @@
         $singInQuery = "INSERT INTO `admins` (`id`, `name`, `email`, `password`) VALUES (NULL,' $name' , '$email' , '$password')";
         $result = mysqli_query($connection , $singInQuery);
         
-        header('location: ../index.html');
+        header('location: ../index.php');
     }
 
     function singUp(){
