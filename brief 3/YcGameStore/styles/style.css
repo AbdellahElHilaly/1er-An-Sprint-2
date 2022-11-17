@@ -34,6 +34,9 @@
     border-width: 3.5px;
     border-color: var(--darck);
 }
+.all-categories{
+    background-color: var(--yelloPrimary);
+}
 
 
 
@@ -78,7 +81,7 @@ nav{
     margin-right: 1rem;
     list-style-type: none;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 .hader-iteme:hover{
@@ -88,6 +91,12 @@ nav{
 .hader-iteme:focus{
     border-bottom: 3px solid black;
 }
+
+.hader-iteme .a-click{
+    text-decoration: none;
+    color: black;
+}
+
 
 
 
@@ -247,6 +256,24 @@ main article .carde .title{
     left: 0;
     
 } */
+
+/* crud ............................................................................ */
+
+.change-input{
+    background-color: var(--yelloSecondary);
+    
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid var(--bluePrimary);
+    
+}
+.change-input:focus{
+    background-color: white;
+}
+
+.icons-crud-2{
+    display: none;
+}
 
 
 

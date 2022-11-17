@@ -8,29 +8,32 @@
 
     function singIn(){
         include 'connection.php';
-        $name = $_POST['name'];
+        $firstName = $_POST['first-name'];
+        $lastName = $_POST['last-name'];
         $email = $_POST['email'];
         $password=$_POST['password'];
         
 
-        $singInQuery = "INSERT INTO `admins` (`id`, `name`, `email`, `password`) VALUES (NULL,' $name' , '$email' , '$password')";
+        $singInQuery = "INSERT INTO `admins` (`id`, `firstname`, `lastname`, `email`, `password`) VALUES (NULL,' $firstName' ,' $lastName' , '$email' , '$password')";
         $result = mysqli_query($connection , $singInQuery);
         
-        header('location: ../index.php');
+        header('location: ../pages/dashboard.php');
     }
 
     function singUp(){
-        include 'connection.php';
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        // include 'connection.php';
+        // $email = $_POST['email'];
+        // $password = $_POST['password'];
 
-        $singUpQuery = " SELECT admin.password as pas ,admin.email as email FROM admins as admin WHERE admin.email = '$email' and admin.password= '$password';";
-        $result = mysqli_query($connection , $singUpQuery);
+        // $singUpQuery = " SELECT admin.password as pas ,admin.email as email FROM admins as admin WHERE admin.email = '$email' and admin.password= '$password';";
+        // $result = mysqli_query($connection , $singUpQuery);
 
-        $adminData = mysqli_fetch_assoc($result);
+        // $adminData = mysqli_fetch_assoc($result);
         
-        if($adminData == NULL)  echo "you haven't an account";
-        else echo "welcome";
+        // if($adminData == NULL) header('location: ../index.php'); 
+        // else header('location: ../pages/dashboard.php');
+
+        header('location: ../pages/dashboard.php');
 
         
 

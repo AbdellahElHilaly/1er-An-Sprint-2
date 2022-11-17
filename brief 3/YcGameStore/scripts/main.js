@@ -14,7 +14,8 @@ nav_list_sing_in.addEventListener("click" , (params) => {
 
     forme_sing_label_id.innerHTML="Sing in";
 
-    document.getElementById('forme_sing_name_id').style.display="flex";
+    document.getElementById('forme_sing_first_name_id').style.display="flex";
+    document.getElementById('forme_sing_last_name_id').style.display="flex";
     document.getElementById('forme_sing_conf_password_id').style.display="flex";
 
     document.getElementById('botton_container_submet_sing_in_id').style.display="block";
@@ -28,7 +29,8 @@ nav_list_sing_up.addEventListener("click" , (params) => {
 
     forme_sing_label_id.innerHTML="Sing up";
 
-    document.getElementById('forme_sing_name_id').style.display="none";
+    document.getElementById('forme_sing_first_name_id').style.display="none";
+    document.getElementById('forme_sing_last_name_id').style.display="none";
     document.getElementById('forme_sing_conf_password_id').style.display="none";
 
     document.getElementById('botton_container_submet_sing_in_id').style.display="none";
@@ -52,7 +54,7 @@ nav_list_sing_up.addEventListener("click" , (params) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ show by
 
-
+let radioAll = document.getElementById('input_radio_all');
 let radioShoter = document.getElementById('input_radio_shoter');
 let radioSport = document.getElementById('input_radio_sport');
 let radioSimulation = document.getElementById('input_radio_simulation');
@@ -62,7 +64,19 @@ let radioPuzzel = document.getElementById('input_radio_puzzel');
 let yellowPrimary = "#F8C71C";
 let darck = "#393E42";
 
+
+radioAll.addEventListener("click" , (params) => {
+    radioAll.style.backgroundColor = yellowPrimary;
+    radioShoter.style.backgroundColor = darck;
+    radioSport.style.backgroundColor = darck;
+    radioSimulation.style.backgroundColor = darck;
+    radioBattelRoyale.style.backgroundColor = darck;
+    radioPuzzel.style.backgroundColor = darck;
+    
+})
+
 radioShoter.addEventListener("click" , (params) => {
+    radioAll.style.backgroundColor = darck;
     radioShoter.style.backgroundColor = yellowPrimary;
     radioSport.style.backgroundColor = darck;
     radioSimulation.style.backgroundColor = darck;
@@ -71,6 +85,7 @@ radioShoter.addEventListener("click" , (params) => {
     
 })
 radioSport.addEventListener("click" , (params) => {
+    radioAll.style.backgroundColor = darck;
     radioShoter.style.backgroundColor = darck;
     radioSport.style.backgroundColor = yellowPrimary;
     radioSimulation.style.backgroundColor = darck;
@@ -79,6 +94,7 @@ radioSport.addEventListener("click" , (params) => {
     
 })
 radioSimulation.addEventListener("click" , (params) => {
+    radioAll.style.backgroundColor = darck;
     radioShoter.style.backgroundColor = darck;
     radioSport.style.backgroundColor = darck;
     radioSimulation.style.backgroundColor = yellowPrimary;
@@ -87,6 +103,7 @@ radioSimulation.addEventListener("click" , (params) => {
     
 })
 radioBattelRoyale.addEventListener("click" , (params) => {
+    radioAll.style.backgroundColor = darck;
     radioShoter.style.backgroundColor = darck;
     radioSport.style.backgroundColor = darck;
     radioSimulation.style.backgroundColor = darck;
@@ -95,6 +112,7 @@ radioBattelRoyale.addEventListener("click" , (params) => {
     
 })
 radioPuzzel.addEventListener("click" , (params) => {
+    radioAll.style.backgroundColor = darck;
     radioShoter.style.backgroundColor = darck;
     radioSport.style.backgroundColor = darck;
     radioSimulation.style.backgroundColor = darck;
@@ -123,6 +141,141 @@ buttonOkSearch.addEventListener("click" , (params) => {
     else if(checkId.checked) inputSearch.placeholder = "id";
     closeModal('exampleModal');
 })
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ crud 
+
+function add(event){
+    let tabelBody = document.getElementById('tabel-games-body');
+    tabelBody.innerHTML+= 
+        `
+            <tr>
+                <th scope="row" class="text-start">1</th>
+                <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
+                <td class="text-start"><input class="change-input" type="text" ></td>
+                <td class="text-start">
+                    <select class="change-input w-100" aria-label="Default select example">
+                        <option selected>...</option>
+                        <option value="1">sport</option>
+                        <option value="3">battel royal</option>
+                        <option value="3">puzzel</option>
+                        <option value="3">simulation</option>
+                    </select>
+                </td>
+                <td class="text-start"><input class="change-input" type="text" ></td>
+                <td class="text-start"><input class="change-input" type="text" ></td>
+                <td class="text-start"> 
+                    <iconify-icon class="pe-4" icon="material-symbols:add-circle-outline-rounded" style="color: green;"></iconify-icon>
+                    <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
+                </td>
+            </tr>
+        `
+    
+    ;
+}
+
+
+function edit(event) {
+    let elt = event.target.parentElement;
+    elt = elt.parentElement;
+    
+
+    for(i=2 ; i<6 ; i++){
+        let value = elt.children[i].innerText;
+        elt.children[i].innerHTML = "<input class='change-input' type='text' value='" + value + "'>"
+        tempGame[i] = value;
+    }
+
+    let value = elt.children[3].innerText;
+    elt.children[3].innerHTML =  
+        `
+            <select class="change-input w-100" aria-label="Default select example">
+                <option selected>${tempGame[3]}</option>
+                <option value="1">sport</option>
+                <option value="3">battel royal</option>
+                <option value="3">puzzel</option>
+                <option value="3">simulation</option>
+            </select>
+
+        `
+    ;
+    
+
+    
+
+      // display icons
+    elt = elt.children[6];
+
+    elt.children[0].style.display="none";
+    elt.children[1].style.display="none";
+    elt.children[2].style.display ="inline-block";
+    elt.children[3].style.display ="inline-block";
+
+    
+    
+
+}
+
+function delet(event) {
+    let elt = event.target.parentElement;
+    elt = elt.parentElement;
+    elt.innerHTML = "";
+}
+
+
+
+
+
+
+function save(event) {
+    let elt = event.target.parentElement;
+    elt = elt.parentElement;
+
+    for(i=2 ; i<6 ; i++){
+        elt = elt.children[i];
+        elt = elt.children[0];
+    
+        let temValue = elt.value;
+        elt = elt.parentElement;
+        elt.innerHTML = temValue;
+        elt = elt.parentElement;
+    }
+    
+    // display icons
+    elt = elt.children[6];
+
+    elt.children[2].style.display="none";
+    elt.children[3].style.display="none";
+    elt.children[0].style.display ="inline-block";
+    elt.children[1].style.display ="inline-block";
+
+
+}
+
+
+// temp array
+tempGame = [];
+function back(event) {
+    let elt = event.target.parentElement;
+    elt = elt.parentElement;
+
+    for(i=2 ; i<6 ; i++){
+        let value = elt.children[i].innerText;
+        elt.children[i].innerHTML = tempGame[i];
+    }
+    
+    // display icons
+    elt = elt.children[6];
+
+    elt.children[2].style.display="none";
+    elt.children[3].style.display="none";
+    elt.children[0].style.display ="inline-block";
+    elt.children[1].style.display ="inline-block";
+    
+}
+
+
+
+
 
 
 

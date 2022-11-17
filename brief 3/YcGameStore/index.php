@@ -1,252 +1,107 @@
-<?php include 'pages/head.php' ?>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YcgameStore</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
+</head>
 
+<body class="body">
 
-    <header class="header">
+    <!-- nav bare -->
+    <nav>
         <img class="logo" src="asset/logo.png" alt="logo">
-        <div class="d-flex">
-            <span class="hader-iteme" tabindex="0">Shearch</span>
-            <input type="text" class="hader-iteme shearch inputs form-control   border border-dark rounded-2 ps-2" id="input-search" placeholder="game name">
-            <iconify-icon class="hader-iteme" icon="ooui:expand"type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"></iconify-icon>
-            
-        </div>
-        
-        <span class="hader-iteme" tabindex="0">Add Game</span>
-
-        <nav>
-            <ul class="nav-list">
-                <li class="hader-iteme"  tabindex="0" id="nav_list_home">Home</li>
-                <li class="hader-iteme"  tabindex="0" id="nav_list_sing_in">abdellah</li>
-                <li class="hader-iteme"  tabindex="0" id="nav_list_sing_up">Sing out</li>
-            </ul>
+        <ul class="nav-list">
+            <li class="hader-iteme"  tabindex="0" id="nav_list_home">Home</li>
+            <li class="hader-iteme"  tabindex="0" id="nav_list_sing_in">Sing in</li>
+            <li class="hader-iteme"  tabindex="0" id="nav_list_sing_up">Sing up</li>
+        </ul>
     </nav>
-    </header>
 
+    <section>
+        <div class="containerr">
+            <div class="reight-section-container">
+                <!-- texts home -->
+                <div class="text-home-container" id="splash_home_id">
+                    <p class="text-home">You Code Game</p>
+                    <p class="text-home">store</p>
+                    <p class="min-description">be the bettel hero and achive all your dreams</p>
+                </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Search by</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!----------------------------------------- sing up ----------------------------------------->
+                <div class="form-container" id="forme_sing_id">
+                    
+                    <form method="post" action="scripts/script.php">
+                        <div class="form-label">
+                            <p class="text-inconsolata text-center fs-2" id="forme_sing_label_id">Sing up</p>
+                        </div>
+                        <!-- name -->
+                        <div class="align-items-center mb-4" id="forme_sing_first_name_id" >
+                            <div class="me-3">
+                                <iconify-icon icon="mdi:user-circle" class="fs-1"></iconify-icon>
+                            </div>
+                            <input name="first-name" type="text" id="form1Example13" placeholder="first name" class="inputs form-control form-control-lg border border-dark rounded-4" />
+                            
+                        </div>
+
+                        <div class="align-items-center mb-4" id="forme_sing_last_name_id" >
+                            <div class="me-3">
+                                <iconify-icon icon="mdi:user-circle" class="fs-1"></iconify-icon>
+                            </div>
+                            <input name="last-name" type="text" id="form1Example13" placeholder="last name" class="inputs form-control form-control-lg border border-dark rounded-4" />
+                            
+                        </div>
+                        <!-- emaim -->
+                        <div class="name-input d-flex align-items-center mb-4">
+                            <div class="me-3">
+                                <iconify-icon icon="ic:round-email" class="fs-1"></iconify-icon>
+                            </div>
+                            <input name="email" type="email" id="form1Example13" placeholder="your email"  class="inputs form-control form-control-lg border border-dark rounded-4"/>
+                        </div>
+                        <!-- password -->
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="me-3">
+                                <iconify-icon icon="mdi:password" class="fs-1"></iconify-icon>
+                            </div>
+                            <input name="password" type="password" id="form1Example13" placeholder="your password" class="inputs form-control form-control-lg border border-dark rounded-4" />
+                            
+                        </div>
+                        <!-- password confirm -->
+                        <div class="align-items-center mb-4" id="forme_sing_conf_password_id">
+                            <div class="pe-3">
+                                <iconify-icon icon="mdi:password-check" class="fs-1"></iconify-icon>
+                            </div>
+                            <input name="conf-password" type="password" id="form1Example13" placeholder="confirm password" class="inputs form-control form-control-lg border border-dark rounded-4" />
+                            
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="button-container text-center" id="botton_container_submet_sing_in_id">
+                            <button name="sing-in" type="submit" class="button-submit"><span class="text-inconsolata" >Submit</span></button>
+                        </div>
+
+                        <div  class="button-container  text-center" id="botton_container_submet_sing_up_id">
+                            <button name="sing-up"  type="submit" class="button-submit "><span class="text-inconsolata" >Submit</span></button>
+                        </div>
+                
+                        </form>
+                    </div>
+
+                
             </div>
-            <div class="modal-body">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check-name">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        name
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check-category" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        category
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check-price" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        price
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check-quantity" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        quantity
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="check-id" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        id
-                    </label>
-                </div>
+            
+            <div class="flayer-container">
+                <img src="asset/flayer.png" class="flayer" alt="Phone image">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btn-ok-search">Ok</button>
-            </div>
-            </div>
+            
+            
         </div>
-    </div>
-
-    
-
-    <main class="d-flex" >
-        <aside class="ps-2">
-            <label  class="fw-bolder">Categories</label>
-            <div class="container ">
-                <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_shoter"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">shoter</label>
-                </div>
-                <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_sport"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">sport</label>
-                </div>
-                <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_battel"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">battel royal</label>
-                </div>
-                <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_puzzel"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">puzzel</label>
-                </div>
-                <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_simulation"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">simulation</label>
-                </div>
-            </div>
-
-
-            <label  class="fw-bolder mt-3">Statistic</label>
-            <div class="container ">
-                <table class="table">
-                    <tbody>
-                        
-                        <tr>
-                            <td>game number</td>
-                            <td>56</td>
-                        </tr>
-                        <tr>
-                            <td>max price</td>
-                            <td>5$</td>
-                        </tr>
-                        <tr>
-                            <td>min price</td>
-                            <td>3$</td>
-                        </tr>
-                        <tr>
-                            <td>categories number</td>
-                            <td>56</td>
-                        </tr>
-                        <tr>
-                            <td>number of bye</td>
-                            <td>560</td>
-                        </tr>
-                        <tr>
-                            <td>game number</td>
-                            <td>56</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-            </div>
-            
-        </aside>
-
-        <article  >
-            <div class="container text-center my-3" >
-                <!-- <div class="row mb-3">
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                </div> -->
-
-
-
-                <table class="table table-warning"  >
-                    <thead>
-                        <tr>
-                        <th scope="col" class="text-start">id</th>
-                        <th scope="col" class="text-start">image</th>
-                        <th scope="col" class="text-start">name</th>
-                        <th scope="col" class="text-start">category</th>
-                        <th scope="col" class="text-start">price</th>
-                        <th scope="col" class="text-start">qantity</th>
-                        <th scope="col" class="text-start">operation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" class="text-start">1</th>
-                            <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
-                            <td class="text-start">garena free fire</td>
-                            <td class="text-start">battel royale</td>
-                            <td class="text-start">free shop</td>
-                            <td class="text-start">illimete</td>
-                            <td class="text-start"> 
-                                <span><iconify-icon class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
-                                <iconify-icon icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-start">1</th>
-                            <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
-                            <td class="text-start">garena free fire</td>
-                            <td class="text-start">battel royale</td>
-                            <td class="text-start">free shop</td>
-                            <td class="text-start">illimete</td>
-                            <td class="text-start"> 
-                                <span><iconify-icon class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
-                                <iconify-icon icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-start">1</th>
-                            <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
-                            <td class="text-start">garena free fire</td>
-                            <td class="text-start">battel royale</td>
-                            <td class="text-start">free shop</td>
-                            <td class="text-start">illimete</td>
-                            <td class="text-start"> 
-                                <span><iconify-icon class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
-                                <iconify-icon icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
-                            </td>
-                        </tr>
-                    </tbody>
-                    </table>
-
-                
-
-                
-
-
-                
-            </div>
-            
-        </article>
-
-    </main>
-
-    
-
-
-
+    </section>
 
 
 
