@@ -184,7 +184,7 @@
 
 
 
-                <table class="table table-warning"  >
+                <table class="table table-warning" id="games-tabel-id"  >
                     <thead>
                         <tr>
                         <th scope="col" class="text-start">id</th>
@@ -192,12 +192,42 @@
                         <th scope="col" class="text-start">name</th>
                         <th scope="col" class="text-start">category</th>
                         <th scope="col" class="text-start">price</th>
-                        <th scope="col" class="text-start">qantity</th>
+                        <th scope="col" class="text-start">quantity</th>
                         <th scope="col" class="text-start">operation</th>
                         </tr>
                     </thead>
+
+                    
+
                     <tbody id="tabel-games-body">
-                        <tr>
+
+                        <?php
+                        include '../scripts/script.php';
+                            $result = getGames();
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo'
+                                    <tr>
+                                        <th scope="row" class="text-start">'.$row['id'].'</th>
+                                        <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
+                                        <td class="text-start">'.$row['name'].'</td>
+                                        <td class="text-start">'.$row['category_id'].'</td>
+                                        <td class="text-start">'.$row['price'].'</td>
+                                        <td class="text-start">'.$row['quantity'].'</td>
+                                        <td class="text-start"> 
+                                        <iconify-icon onclick="edit(event)" class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
+                                            <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
+                                            <iconify-icon onclick="back(event)" class="icons-crud-2 pe-4" icon="tabler:arrow-back" style="color: blue;"></iconify-icon>
+                                            <iconify-icon onclick="saveUpdate(event)" class="icons-crud-2 pe-4" icon="material-symbols:save" style="color: green;"></iconify-icon>
+                                        </td>
+                                    </tr>
+
+
+                                ';
+                            }
+
+                        ?>
+
+                        <!-- <tr>
                             <th scope="row" class="text-start">1</th>
                             <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
                             <td class="text-start">garena free fire</td>
@@ -208,26 +238,9 @@
                             <iconify-icon onclick="edit(event)" class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
                                 <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
                                 <iconify-icon onclick="back(event)" class="icons-crud-2 pe-4" icon="tabler:arrow-back" style="color: blue;"></iconify-icon>
-                                <iconify-icon onclick="save(event)" class="icons-crud-2 pe-4" icon="material-symbols:save" style="color: green;"></iconify-icon>
+                                <iconify-icon onclick="saveUpdate(event)" class="icons-crud-2 pe-4" icon="material-symbols:save" style="color: green;"></iconify-icon>
                             </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-start">1</th>
-                            <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
-                            <td class="text-start">garena free fire</td>
-                            <td class="text-start">
-                                    shoter
-                            </td>
-                            <td class="text-start">free shop</td>
-                            <td class="text-start">illimete</td>
-                            <td class="text-start"> 
-                                <iconify-icon onclick="edit(event)" class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
-                                <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
-                                <iconify-icon onclick="back(event)" class="icons-crud-2 pe-4" icon="tabler:arrow-back" style="color: blue;"></iconify-icon>
-                                <iconify-icon onclick="save(event)" class="icons-crud-2 pe-4" icon="material-symbols:save" style="color: green;"></iconify-icon>
-
-                            </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                     </table>
 
@@ -251,7 +264,8 @@
 
 
 
-
+    <!-- ajax jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../scripts/main.js"></script>
     <!-- JavaScript iconify -->
     <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>

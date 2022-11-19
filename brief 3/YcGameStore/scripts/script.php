@@ -1,12 +1,26 @@
 <?php
     include 'connection.php';
+    
 
-    if(isset($_POST['sing-in']))  singIn();
-    else if(isset($_POST['sing-up']))  singUp();
+    if(isset($_POST['sing-in']))  singUp();
+    else if(isset($_POST['sing-up']))  singIn();
+
+    
+
+    if(isset($_POST['n_g_name'])) add();
+
+    else if(isset($_POST['g_id'])) update();
 
 
 
-    function singIn(){
+    
+
+
+    
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    function singUp(){
         include 'connection.php';
         $firstName = $_POST['first-name'];
         $lastName = $_POST['last-name'];
@@ -20,7 +34,7 @@
         header('location: ../pages/dashboard.php');
     }
 
-    function singUp(){
+    function singIn(){
         // include 'connection.php';
         // $email = $_POST['email'];
         // $password = $_POST['password'];
@@ -40,5 +54,53 @@
         
 
     }
+
+
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~crud
+    function getGames(){
+        include 'connection.php';
+
+        $getGamesQuery = "SELECT * FROM `games`";
+        $result = mysqli_query($connection , $getGamesQuery);
+
+        return $result;
+
+        
+    }
+    function add(){
+        include 'connection.php';
+        $gName =  $_POST['n_g_name'];
+        $gCategory_id =  $_POST['n_g_category_id'];
+        $gPrice =  $_POST['n_g_price'];
+        $gQuantity =  $_POST['n_g_quntity'];
+
+        $addGameQuery = "INSERT INTO `games` (`id`, `name`, `category_id`, `price`, `quantity`) VALUES (NULL, '$gName', '$gCategory_id', '$gPrice', '$gQuantity')";
+        $result = mysqli_query($connection , $addGameQuery);
+    }
+
+
+    
+    function update(){
+        include 'connection.php';
+        $gId =  $_POST['g_id'];
+        $gName =  $_POST['g_name'];
+        $gCategory_id =  $_POST['g_category_id'];
+        $gPrice =  $_POST['g_price'];
+        $gQuantity =  $_POST['g_quntity'];
+
+
+        $updateGameQuery = "UPDATE `games` SET `name` = '$gName' , `category_id` = '$gCategory_id', `price` =  '$gPrice', 
+        `quantity` =  '$gQuantity' WHERE  games.id = '$gId'";
+
+        
+        
+        
+        $result = mysqli_query($connection , $updateGameQuery);
+
+    
+        
+    }
+
 
 ?>
