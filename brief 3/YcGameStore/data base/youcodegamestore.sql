@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 17 nov. 2022 à 22:21
+-- Généré le : dim. 20 nov. 2022 à 14:45
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.1.10
 
@@ -32,15 +32,16 @@ CREATE TABLE `admins` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `admins`
 --
 
-INSERT INTO `admins` (`id`, `firstname`, `lastname`, `email`, `password`) VALUES
-(2, ' abdellah', ' el hilaly', 'abdo@gmail.com', '123');
+INSERT INTO `admins` (`id`, `firstname`, `lastname`, `email`, `password`, `image`) VALUES
+(9, ' abdellah', ' el hilaly', 'a@b', '123', 'images.jpg');
 
 -- --------------------------------------------------------
 
@@ -75,8 +76,23 @@ CREATE TABLE `games` (
   `name` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `games`
+--
+
+INSERT INTO `games` (`id`, `name`, `category_id`, `price`, `quantity`, `image`) VALUES
+(57, 'Eum quo commodo sunt', 3, '58', 19, ''),
+(60, 'Possimus sunt quia', 3, '46', 97, ''),
+(61, 'Officia tempora iure', 1, '1', 10, ''),
+(62, 'Voluptatibus cupidit', 3, '90', 96, ''),
+(64, 'Et officiis culpa ni', 1, '58', 45, ''),
+(65, 'Quia doloremque ut s', 3, '58', 18, ''),
+(66, 'Qui id quasi volupt', 1, '59', 99, ''),
+(67, 'Et exercitation aliq', 3, '73', 93, '');
 
 --
 -- Index pour les tables déchargées
@@ -109,13 +125,13 @@ ALTER TABLE `games`
 -- AUTO_INCREMENT pour la table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- Contraintes pour les tables déchargées

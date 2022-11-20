@@ -107,32 +107,28 @@
 
             <label  class="fw-bolder mt-3">Statistic</label>
             <div class="container ">
-                <table class="table">
-                    <tbody>
+                <table class="table" id="tabel-statistic">
+                    <tbody >
                         
                         <tr>
                             <td>game number</td>
-                            <td>56</td>
+                            <td><?php  echo mysqli_num_rows(getGames());?></td>
                         </tr>
                         <tr>
                             <td>max price</td>
-                            <td>5$</td>
+                            <td><?php statistique("max"); ?>$</td>
                         </tr>
                         <tr>
                             <td>min price</td>
-                            <td>3$</td>
+                            <td><?php statistique("min"); ?>$</td>
                         </tr>
                         <tr>
                             <td>categories number</td>
-                            <td>56</td>
+                            <td>5</td>
                         </tr>
                         <tr>
-                            <td>number of bye</td>
+                            <td>stock</td>
                             <td>560</td>
-                        </tr>
-                        <tr>
-                            <td>game number</td>
-                            <td>56</td>
                         </tr>
                         
                     </tbody>
@@ -143,45 +139,7 @@
 
         <article  >
             <div class="container text-center my-3" >
-                <!-- <div class="row mb-3">
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="carde">
-                            <p class="title text-white  fw-bolder ps-2">game title</p>
-                            <img class="" src="https://img.freepik.com/premium-vector/control-flat-design-vector-background-game_53850-3.jpg" alt="game image">
-                        </div>
-                    </div>
-                </div> -->
-
+                
 
 
                 <table class="table table-warning" id="games-tabel-id"  >
@@ -202,7 +160,7 @@
                     <tbody id="tabel-games-body">
 
                         <?php
-                        include '../scripts/script.php';
+                        
                             $result = getGames();
                             while($row = mysqli_fetch_assoc($result)){
                                 echo'

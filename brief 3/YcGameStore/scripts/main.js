@@ -150,15 +150,15 @@ tempGame = [];
 
 function add(event){
     // Find a <table> element with id="myTable":
-    var table = document.getElementById("games-tabel-id");
+    let table = document.getElementById("games-tabel-id");
 
     // Create an empty <tr> element and add it to the 1st position of the table:
-    var row = table.insertRow(1);
+    let row = table.insertRow(1);
 
     row.innerHTML =
                     `
                         <tr>
-                            <th scope="row" class="text-start">1</th>
+                            <th scope="row" class="text-start">?</th>
                             <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
                             <td class="text-start"><input class="change-input" type="text" ></td>
                             <td class="text-start">
@@ -170,8 +170,8 @@ function add(event){
                                     <option value="3">simulation</option>
                                 </select>
                             </td>
-                            <td class="text-start"><input class="change-input" type="text" ></td>
-                            <td class="text-start"><input class="change-input" type="text" ></td>
+                            <td class="text-start"><input class="change-input" type="number" ></td>
+                            <td class="text-start"><input class="change-input" type="number" ></td>
                             <td class="text-start"> 
                                 <iconify-icon class="pe-4" onclick="saveAdd(event)" icon="material-symbols:add-circle-outline-rounded" style="color: green;"></iconify-icon>
                                 <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
@@ -181,6 +181,8 @@ function add(event){
 
 }
 
+
+
 function saveAdd(event){
 
     let elt = event.target.parentElement;
@@ -189,24 +191,61 @@ function saveAdd(event){
         elt = elt.children[i];
         elt = elt.children[0];
         tempGame[i] = elt.value;
-        
-        
+
         elt = elt.parentElement;
         elt = elt.parentElement;
     }
 
+    elt.innerHTML = "";
+
     // AJAX send data from  this to script.php 
     
-    $.post('../scripts/script.php' ,{   
-            n_g_name:tempGame[2]  , 
-            n_g_category_id:tempGame[3] , 
-            n_g_price:tempGame[4] , 
-            n_g_quntity:tempGame[5] },
+    $.post('../scripts/script.php' ,{  
+            request:"add", 
+            g_name:tempGame[2]  , 
+            g_category_id:tempGame[3] , 
+            g_price:tempGame[4] , 
+            g_quntity:tempGame[5] 
+        }, 
+
+        function(data, status, jqXHR) {// success callback
+
+            displayStatistic(data);
+
+            let table = document.getElementById("games-tabel-id");
+            
+            let row = table.insertRow();
+            row.innerHTML = 
+                `
+                    <th scope="row" class="text-start">`+data.id+`</th>
+                    <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
+                    <td class="text-start">`+data.name+`</td>
+                    <td class="text-start">`+data.category_id+`</td>
+                    <td class="text-start">`+data.price+`</td>
+                    <td class="text-start">`+data.quantity+`</td>
+                    <td class="text-start"> 
+                    <iconify-icon onclick="edit(event)" class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
+                        <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
+                        <iconify-icon onclick="back(event)" class="icons-crud-2 pe-4" icon="tabler:arrow-back" style="color: blue;"></iconify-icon>
+                        <iconify-icon onclick="saveUpdate(event)" class="icons-crud-2 pe-4" icon="material-symbols:save" style="color: green;"></iconify-icon>
+                    </td>
+                `;
 
             
+
+            alert("added : " + status);
+            
+        },
+        'json'
+
+
     );
 
-    window.location.reload();
+    
+
+
+
+    // window.location.reload();
 
     
     
@@ -221,9 +260,14 @@ function edit(event) {
     
     tempGame[0] = tempVal;
 
-    for(i=2 ; i<6 ; i++){
+    for(i=2 ; i<4 ; i++){
         let value = elt.children[i].innerText;
         elt.children[i].innerHTML = "<input class='change-input' type='text' value='" + value + "'>"
+        tempGame[i] = value;
+    }
+    for(i=4 ; i<6 ; i++){
+        let value = elt.children[i].innerText;
+        elt.children[i].innerHTML = "<input class='change-input' type='number' value='" + value + "'>"
         tempGame[i] = value;
     }
 
@@ -241,9 +285,6 @@ function edit(event) {
 
         `
     ;
-    
-
-    
 
       // display icons
     elt = elt.children[6];
@@ -261,27 +302,48 @@ function edit(event) {
 
 
 function saveUpdate(event) {
+
     let elt = event.target.parentElement;
     elt = elt.parentElement;
 
+    for(i=2 ; i<6 ; i++){
+        elt = elt.children[i];
+        elt = elt.children[0];
+    
+        tempGame[i] = elt.value;
 
+        elt = elt.parentElement;
+        elt = elt.parentElement;
+    }
     
 
     // AJAX send data from  this to script.php 
     $.post('../scripts/script.php' ,
         {
+            request:"update",
             g_id:tempGame[0]  , 
             g_name:tempGame[2]  , 
-            g_category:tempGame[3] , 
+            g_category_id:tempGame[3] , 
             g_price:tempGame[4] , 
             g_quntity:tempGame[5] 
         },
 
+        function(data, status, jqXHR) {// success callback
+            elt = elt.parentElement;
+            elt.children[2].innerHTML = data.name;
+            elt.children[3].innerHTML = data.category_id;
+            elt.children[4].innerHTML = data.price;
+            elt.children[5].innerHTML = data.quantity;
+            displayStatistic(data);
+
+            alert("Upddated : " + status);
+            
+        },
+        'json'
+
         
     );
 
-    
-    
     // display icons
     elt = elt.children[6];
 
@@ -290,29 +352,37 @@ function saveUpdate(event) {
     elt.children[0].style.display ="inline-block";
     elt.children[1].style.display ="inline-block";
 
-    window.location.reload();
-
-
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 function delet(event) {
     let elt = event.target.parentElement;
     elt = elt.parentElement;
-    elt.innerHTML = "";
+
+    elt = elt.children[0];
+
+    let id = elt.innerText;
+
+     // AJAX send data from  this to script.php 
+    $.post('../scripts/script.php' ,
+        {
+            request:"delete",
+            g_id:id, 
+        },
+        function(data, status, jqXHR) {// success callback
+            displayStatistic(data);
+            elt = elt.parentElement;
+            elt.innerHTML = "";
+            alert("delete : " + status);
+
+        },
+        'json'
+    );
+
+    
+
 }
 
 
@@ -334,12 +404,27 @@ function back(event) {
     elt.children[3].style.display="none";
     elt.children[0].style.display ="inline-block";
     elt.children[1].style.display ="inline-block";
-    
 }
 
 
 
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~statistic
+function displayStatistic(data){
+
+    let tabelStat = document.getElementById('tabel-statistic');
+
+
+    tabelStat.rows[0].cells[1].textContent = data.gamesNumber ;
+    tabelStat.rows[1].cells[1].textContent = data.maxPrice + "$";
+    tabelStat.rows[2].cells[1].textContent = data.minPrice + "$";
+    tabelStat.rows[4].cells[1].textContent = data.stock ;
+
+
+    
+
+
+}
 
 
 
