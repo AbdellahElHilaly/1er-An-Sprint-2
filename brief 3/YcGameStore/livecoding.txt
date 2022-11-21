@@ -1,0 +1,6 @@
+                                    sql injection           *
+!
+def : ta4ra (li det nit ) print (script js or  valisze  html)
+
+2: cross site scripting  : l haker kayhaki l users li 3andi f data base 
+

@@ -1,26 +1,34 @@
 <?php include '../pages/head.php' ?>
-<body>
+<body class="body">
 
 
     <header class="header">
-        <img class="logo" src="../asset/logo.png" alt="logo">
-        <div class="d-flex">
-            <span class="hader-iteme" tabindex="0">Shearch</span>
-            <input type="text" class="hader-iteme shearch inputs form-control   border border-dark rounded-2 ps-2" id="input-search" placeholder="game name">
-            <iconify-icon class="hader-iteme" icon="ooui:expand"type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"></iconify-icon>
-            
-        </div>
+        <a href="../index.php">
+            <img class="logo" src="../asset/general/logo.png" alt="logo">
+        </a>
         
+        <div class="d-flex m-0">
+            <span class="hader-iteme" tabindex="0">Shearch</span>
+            <input type="text" class="hader-iteme shearch inputs form-control   border border-dark rounded-2 " id="input-search" placeholder="game name">
+            <iconify-icon class="hader-iteme" icon="ooui:expand"type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"></iconify-icon>
+
+        </div>
+
         <span onclick="add(event)" class="hader-iteme" tabindex="0">Add Game</span>
 
         <nav>
-            <ul class="nav-list">
+            <ul class="nav-list align-items-center m-0">
                 <li class="hader-iteme"  tabindex="0" id="nav_list_home"><a class="a-click" href="../index.php">Home</a></li>
-                <li class="hader-iteme"  tabindex="0" id="nav_list_sing_in">abdellah</li>
-                <li class="hader-iteme"  tabindex="0" id="nav_list_sing_up"><a class="a-click" href="../index.php">Sing out</a></li>
+                <li class="hader-iteme"  tabindex="0" id="nav_list_sing_in">
+                    <img class="rounded-circle shadow-4-strong " height="35rem" with = "35rem"  alt="avatar2" src= "https://mir-s3-cdn-cf.behance.net/project_modules/fs/3c256e58872685.5a0c7b8939f42.png" />
+
+                    
+                </li>
+                <li class="hader-iteme "  tabindex="0" id="nav_list_sing_up"><a class="a-click" href="../index.php">Sing out</a></li>
             </ul>
-    </nav>
+        </nav>
     </header>
+    
 
 
     <!-- Modal -->
@@ -71,36 +79,35 @@
         </div>
     </div>
 
-    
 
     <main class="d-flex" >
         <aside class="ps-2">
             <label  class="fw-bolder">Categories</label>
             <div class="container ">
                 <div class="d-flex  align-items-center">
-                    <span class="input-radio all-categories" id="input_radio_all"></span>
+                    <span onclick="displayGames(0)" class="input-radio all-categories" id="input_radio_all"></span>
                     <label class=" ms-2" for="flexRadioDefault1">all</label>
                 </div>
 
                 <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_shoter"></span>
+                    <span onclick="displayGames(1)" class="input-radio" id="input_radio_shoter"></span>
                     <label class=" ms-2" for="flexRadioDefault1">shoter</label>
                 </div>
                 <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_sport"></span>
+                    <span onclick="displayGames(2)" class="input-radio" id="input_radio_battel"></span>
+                    <label  class=" ms-2" for="flexRadioDefault1">battel royal</label>
+                </div>
+                <div class="d-flex  align-items-center">
+                    <span onclick="displayGames(3)" class="input-radio" id="input_radio_puzzel"></span>
+                    <label  class=" ms-2" for="flexRadioDefault1">puzzel</label>
+                </div>
+                <div class="d-flex  align-items-center">
+                    <span  onclick="displayGames(4)"  class="input-radio" id="input_radio_sport"></span>
                     <label class=" ms-2" for="flexRadioDefault1">sport</label>
                 </div>
                 <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_battel"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">battel royal</label>
-                </div>
-                <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_puzzel"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">puzzel</label>
-                </div>
-                <div class="d-flex  align-items-center">
-                    <span class="input-radio" id="input_radio_simulation"></span>
-                    <label class=" ms-2" for="flexRadioDefault1">simulation</label>
+                    <span onclick="displayGames(5)" class="input-radio" id="input_radio_simulation"></span>
+                    <label  class=" ms-2" for="flexRadioDefault1">simulation</label>
                 </div>
             </div>
 
@@ -109,18 +116,17 @@
             <div class="container ">
                 <table class="table" id="tabel-statistic">
                     <tbody >
-                        
                         <tr>
                             <td>game number</td>
-                            <td><?php  echo mysqli_num_rows(getGames());?></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>max price</td>
-                            <td><?php statistique("max"); ?>$</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>min price</td>
-                            <td><?php statistique("min"); ?>$</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>categories number</td>
@@ -128,18 +134,15 @@
                         </tr>
                         <tr>
                             <td>stock</td>
-                            <td>560</td>
+                            <td></td>
                         </tr>
-                        
                     </tbody>
                 </table>
             </div>
-            
         </aside>
 
         <article  >
             <div class="container text-center my-3" >
-                
 
 
                 <table class="table table-warning" id="games-tabel-id"  >
@@ -155,66 +158,21 @@
                         </tr>
                     </thead>
 
-                    
+                    <!-- hear display games  -->
+
 
                     <tbody id="tabel-games-body">
-
-                        <?php
-                        
-                            $result = getGames();
-                            while($row = mysqli_fetch_assoc($result)){
-                                echo'
-                                    <tr>
-                                        <th scope="row" class="text-start">'.$row['id'].'</th>
-                                        <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
-                                        <td class="text-start">'.$row['name'].'</td>
-                                        <td class="text-start">'.$row['category_id'].'</td>
-                                        <td class="text-start">'.$row['price'].'</td>
-                                        <td class="text-start">'.$row['quantity'].'</td>
-                                        <td class="text-start"> 
-                                        <iconify-icon onclick="edit(event)" class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
-                                            <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
-                                            <iconify-icon onclick="back(event)" class="icons-crud-2 pe-4" icon="tabler:arrow-back" style="color: blue;"></iconify-icon>
-                                            <iconify-icon onclick="saveUpdate(event)" class="icons-crud-2 pe-4" icon="material-symbols:save" style="color: green;"></iconify-icon>
-                                        </td>
-                                    </tr>
-
-
-                                ';
-                            }
-
-                        ?>
-
-                        <!-- <tr>
-                            <th scope="row" class="text-start">1</th>
-                            <td class="text-start"><img class="game-image" src="https://downloadr2.apkmirror.com/wp-content/uploads/2022/11/94/637473353b970.png" alt="game image"></td>
-                            <td class="text-start">garena free fire</td>
-                            <td class="text-start">battel royale</td>
-                            <td class="text-start">free shop</td>
-                            <td class="text-start">illimete</td>
-                            <td class="text-start"> 
-                            <iconify-icon onclick="edit(event)" class="pe-4" icon="material-symbols:edit-outline-sharp" style="color: #2bb7da;"></iconify-icon>
-                                <iconify-icon onclick="delet(event)" class="pe-4" icon="mingcute:delete-2-line" style="color: red;"></iconify-icon>
-                                <iconify-icon onclick="back(event)" class="icons-crud-2 pe-4" icon="tabler:arrow-back" style="color: blue;"></iconify-icon>
-                                <iconify-icon onclick="saveUpdate(event)" class="icons-crud-2 pe-4" icon="material-symbols:save" style="color: green;"></iconify-icon>
-                            </td>
-                        </tr> -->
                     </tbody>
-                    </table>
-
-                
-
-                
+                </table>
 
 
-                
+
             </div>
-            
+
         </article>
 
     </main>
 
-    
 
 
 
