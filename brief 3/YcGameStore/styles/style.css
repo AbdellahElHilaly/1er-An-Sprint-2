@@ -77,8 +77,6 @@ header .shearch{
     font-family: 'Inter', sans-serif;
     padding-top:5px;
     padding-left:10px;
-    
-    
 }
 
 
@@ -168,15 +166,13 @@ section   .reight-section-container{
     margin: auto;
 }
 section .form-container{
+    width: 600px;
     display: none;
     margin: auto;
     border-radius: 25px;
     border: 1px solid black; 
     padding: 10px 20px;
     background-color: var(--blueSecondary);
-
-    
-    
 }
 
 
@@ -207,6 +203,12 @@ section .form-container .button-submit:active {
     border: 2px solid var(--orangePrimary);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+}
+
+
+.message-validation{
+    display: none;
+    margin-left: 2px;
 }
 
 /* 

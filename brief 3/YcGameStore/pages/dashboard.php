@@ -8,8 +8,8 @@
         </a>
         
         <div class="d-flex m-0">
-            <span class="hader-iteme" tabindex="0">Shearch</span>
-            <input type="text" class="hader-iteme shearch inputs form-control   border border-dark rounded-2 " id="input-search" placeholder="game name">
+            <span class="hader-iteme" tabindex="0">Search</span>
+            <input onkeyup="Search()" type="text" class="hader-iteme shearch inputs form-control   border border-dark rounded-2 " id="input-search" placeholder="game name">
             <iconify-icon class="hader-iteme" icon="ooui:expand"type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"></iconify-icon>
 
         </div>
@@ -73,7 +73,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btn-ok-search">Ok</button>
+                <button onclick="getSearchIndis()" type="button" class="btn btn-primary" id="btn-ok-search">Ok</button>
             </div>
             </div>
         </div>
@@ -95,11 +95,11 @@
                 </div>
                 <div class="d-flex  align-items-center">
                     <span onclick="displayGames(2)" class="input-radio" id="input_radio_battel"></span>
-                    <label  class=" ms-2" for="flexRadioDefault1">battel royal</label>
+                    <label  class=" ms-2" for="flexRadioDefault1">patel royal</label>
                 </div>
                 <div class="d-flex  align-items-center">
                     <span onclick="displayGames(3)" class="input-radio" id="input_radio_puzzel"></span>
-                    <label  class=" ms-2" for="flexRadioDefault1">puzzel</label>
+                    <label  class=" ms-2" for="flexRadioDefault1">puzzle</label>
                 </div>
                 <div class="d-flex  align-items-center">
                     <span  onclick="displayGames(4)"  class="input-radio" id="input_radio_sport"></span>
@@ -182,7 +182,7 @@
 
     <!-- ajax jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../scripts/main.js"></script>
+    <script src="../scripts/dashboard.js"></script>
     <!-- JavaScript iconify -->
     <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
     <!-- JavaScript Bundle with Popper -->

@@ -17,6 +17,8 @@
         else if($_POST['request'] == "display-games-4") getGames(4);
         else if($_POST['request'] == "display-games-5") getGames(5);
         else if($_POST['request'] == "statistique") getStatistique();
+        else if($_POST['request'] == "Search") Search();
+
     }
 
 
@@ -141,7 +143,13 @@
 
         $data["id"] = $row["id"];
         $data["name"] = $row["name"];
-        $data["category_id"] = $row["category_id"];
+
+        if($row["category_id"] == 1) $data["category"] = "shoter";
+        else if($row["category_id"] == 2) $data["category"] = "patel royal";
+        else if($row["category_id"] == 3) $data["category"] = "puzzelz";
+        else if($row["category_id"] == 4) $data["category"] = "sport";
+        else if($row["category_id"] == 5) $data["category"] = "simulation";
+
         $data["price"] = $row["price"];
         $data["quantity"] = $row["quantity"];
 
@@ -174,7 +182,11 @@
 
         $data["id"] = $row["id"];
         $data["name"] = $row["name"];
-        $data["category_id"] = $row["category_id"];
+        if($row["category_id"] == 1) $data["category"] = "shoter";
+        else if($row["category_id"] == 2) $data["category"] = "patel royal";
+        else if($row["category_id"] == 3) $data["category"] = "puzzelz";
+        else if($row["category_id"] == 4) $data["category"] = "sport";
+        else if($row["category_id"] == 5) $data["category"] = "simulation";
         $data["price"] = $row["price"];
         $data["quantity"] = $row["quantity"];
 
@@ -196,6 +208,66 @@
         echo json_encode($result);
         mysqli_close($connection);
     }
+
+/*
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Searsh:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+function Search(){
+    $indis = $_POST['indis'];
+    $message = $_POST['message'];
+
+    include 'connection.php';
+
+    if($indis == 1){
+        $sql = "SELECT games.id, games.name, categories.name as category,  games.price ,games.quantity  FROM games INNER JOIN categories on categories.id = games.category_id
+        WHERE games.name LIKE '$message%';";
+    } 
+    else  if($indis == 2){
+        $sql = "SELECT games.id, games.name, categories.name as category,  games.price ,games.quantity  FROM games INNER JOIN categories on categories.id = games.category_id
+        WHERE categories.name LIKE '$message%';";
+    }
+    else  if($indis == 3){
+        $sql = "SELECT games.id, games.name, categories.name as category,  games.price ,games.quantity  FROM games INNER JOIN categories on categories.id = games.category_id
+        WHERE games.price LIKE '$message%';";
+    }
+    else  if($indis == 4){
+        $sql = "SELECT games.id, games.name, categories.name as category,  games.price ,games.quantity  FROM games INNER JOIN categories on categories.id = games.category_id
+        WHERE games.quantity LIKE '$message%';";
+    }
+    else  if($indis == 5){
+        $sql = "SELECT games.id, games.name, categories.name as category,  games.price ,games.quantity  FROM games INNER JOIN categories on categories.id = games.category_id
+        WHERE games.id LIKE '$message%';";
+    }
+
+    $result = mysqli_query($connection , $sql);
+
+        $i=0;
+        while($row = mysqli_fetch_assoc($result)){
+            $data[$i]["id"] = $row['id'];
+            $data[$i]["name"] = $row['name'];
+            $data[$i]["category_id"] = $row['category'];
+            $data[$i]["price"] = $row['price'];
+            $data[$i]["quantity"] = $row['quantity'];
+            $i++;
+        }
+
+    echo json_encode($data);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::statistique:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -45,6 +45,10 @@ let imVm = document.getElementById('i-validate-id');
 
 
 let regName = /[A-Za-z]{3,10}$/;
+let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let regPasword = /[A-Za-z]{3,10}$/;
+let regImage =    /\.jpe?g$/;
+
 
 
 
@@ -62,6 +66,7 @@ let regName = /[A-Za-z]{3,10}$/;
 
 
 function blockOperation(){
+    imageValidat = true;
     if(
         firstNameValidat && lastNameValidat &&
         emaileValidat && passwordValidat &&
@@ -78,32 +83,96 @@ function blockOperation(){
 
 
 function firstNameValidate(){
+    fNvM.style.display = "block";
     if(!regName.test(firstName.value)){
-
-        fNvM.style.color = "#ff0000";
+        fNvM.style.color = "red";
         fNvM.innerText = 'invalide';
         firstNameValidat = false;
     
     }
     else{
-        fNvM.class ="text-success";
+        fNvM.style.color = "green";
         fNvM.innerText = 'valide';
         firstNameValidat = true;
     }
+    blockOperation();
 }
 function lastNameValidate(){
+    lNvM.style.display = "block";
+    if(!regName.test(lastName.value)){
 
+        lNvM.style.color = "red";
+        lNvM.innerText = 'invalide';
+        lastNameValidat = false;
+    
+    }
+    else{
+        lNvM.style.color = "green";
+        lNvM.innerText = 'valide';
+        lastNameValidat = true;
+    }
+    blockOperation();
 }
 function emaileValidate(){
-
+    eVm.style.display = "block";
+    if(!regEmail.test(emaile.value)){
+        eVm.style.color = "red";
+        eVm.innerText = 'invalide';
+        emaileValidat = false;
+    
+    }
+    else{
+        eVm.style.color = "green";
+        eVm.innerText = 'valide';
+        emaileValidat = true;
+    }
+    blockOperation();
 }
 function passwordValidate(){
-
+    pVm.style.display = "block";
+    if(!regPasword.test(password.value)){
+        pVm.style.color = "red";
+        pVm.innerText = 'invalide';
+        passwordValidat = false;
+    
+    }
+    else{
+        pVm.style.color = "green";
+        pVm.innerText = 'valide';
+        passwordValidat = true;
+    }
+    blockOperation();
 }
 function confPasswordValidate(){
-
+    cPvM.style.display = "block";
+    if(confPassword.value != password.value){
+        cPvM.style.color = "red";
+        cPvM.innerText = 'deferent';
+        confPasswordValidat = false;
+    
+    }
+    else{
+        cPvM.style.color = "green";
+        cPvM.innerText = 'valid';
+        confPasswordValidat = true;
+    }
+    blockOperation();
 }
 
 function imageValidate(){
+    imageValidat = true;
+    // imVm.style.display = "block";
+    // console.log("test");
+    // if(!regImage.test(image.value)){
 
+    //     imVm.style.color = "red";
+    //     imVm.innerText = 'invalide';
+    //     firstNameValidat = false;
+    
+    // }
+    // else{
+    //     imVm.style.color = "green";
+    //     imVm.innerText = 'valide';
+    //     firstNameValidat = true;
+    // }
 }

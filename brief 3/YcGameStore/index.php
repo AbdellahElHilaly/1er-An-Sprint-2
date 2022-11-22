@@ -50,7 +50,7 @@
                                 <iconify-icon icon="mdi:user-circle" class="fs-1"></iconify-icon>
                             </div>
                             <input name="first-name" onkeyup="firstNameValidate()" type="text" id="first-name-id" placeholder="first name" class="inputs form-control form-control-lg border border-dark rounded-4" />
-                            <span id="f-n-validate-id" class="text-danger ms-1">invalide</span>
+                            <span id="f-n-validate-id" class="message-validation">invalide</span>
                         </div>
                         
                         <!-- first name -->
@@ -60,7 +60,7 @@
                                 <iconify-icon icon="mdi:user-circle" class="fs-1"></iconify-icon>
                             </div>
                             <input name="last-name" onkeyup="lastNameValidate()" type="text" id="last-name-id" placeholder="last name" class="inputs form-control form-control-lg border border-dark rounded-4" />
-                            <span id="l-n-validate-id" class="text-danger ms-1">invalide</span>
+                            <span id="l-n-validate-id" class="message-validation">invalide</span>
                         </div>
                         <!-- email -->
                         <div class="name-input d-flex align-items-center mb-4">
@@ -68,7 +68,7 @@
                                 <iconify-icon icon="ic:round-email" class="fs-1"></iconify-icon>
                             </div>
                             <input name="email" onkeyup="emaileValidate()" type="email" id="email-id" placeholder="your email"  class="inputs form-control form-control-lg border border-dark rounded-4"/>
-                            <span id="e-validate-id" class="text-danger ms-1">invalide</span>
+                            <span id="e-validate-id" class="message-validation">invalide</span>
                         </div>
                         <!-- password -->
                         <div class="d-flex align-items-center mb-4">
@@ -76,7 +76,7 @@
                                 <iconify-icon icon="mdi:password" class="fs-1"></iconify-icon>
                             </div>
                             <input name="password" onkeyup="passwordValidate()" type="password" id="pasword-id" placeholder="your password" class="inputs form-control form-control-lg border border-dark rounded-4" />
-                            <span id="p-validate-id" class="text-danger ms-1">invalide</span>
+                            <span id="p-validate-id" class="message-validation">invalide</span>
                         </div>
                         <!-- password confirm -->
                         <div class="align-items-center mb-4" id="forme_sing_conf_password_id">
@@ -85,15 +85,15 @@
                             </div>
                             
                             <input name="conf-password" onkeyup="confPasswordValidate()" type="password" id="conf-pasword-id" placeholder="confirm password" class="inputs form-control form-control-lg border border-dark rounded-4" />
-                            <span id="c-p-validate-id" class="text-danger ms-1">invalide</span>
+                            <span id="c-p-validate-id" class="message-validation">invalide</span>
                         </div>
                         <!-- image -->
                         <div class="align-items-center mb-4" id="forme_sing_load_image_id">
                             <div class="pe-3">
                             <img class="rounded-circle shadow-4-strong " height="35rem" with = "35rem"  alt="avatar2" src= "https://mir-s3-cdn-cf.behance.net/project_modules/fs/3c256e58872685.5a0c7b8939f42.png" />
                             </div>
-                            <input name="game-image" onkeyup="imageValidate()" id="image-id" class="inputs form-control form-control-lg border border-dark rounded-4" type="file">
-                            <span id="i-validate-id" class="text-danger ms-1">invalide</span>
+                            <input name="game-image" onload="imageValidate()" id="image-id" class="inputs form-control form-control-lg border border-dark rounded-4" type="file">
+                            <span id="i-validate-id" class="message-validation">invalide</span>
                             
                             
                         </div>
